@@ -1,4 +1,9 @@
 /* ===== Global Styles ===== */
+.hero {
+  background-image: url('1.png');
+}
+
+
 * {
   margin: 0;
   padding: 0;
