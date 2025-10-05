@@ -1,157 +1,43 @@
-/* ===== Global Styles ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Add to your existing styles.css */
+.project-card a {
+  text-decoration: none; /* Removes underline */
+  color: inherit;      /* Inherits the white text color */
+  display: block;      /* Ensures the link fills the entire card area */
 }
-
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: #fff;
-  scroll-behavior: smooth;
-  background: #0a0a0a;
-}
-
-/* ===== Navigation Bar ===== */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 50px;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00bcd4;
-}
-
-.logo span {
-  color: #fff;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #00bcd4;
-}
-
-/* ===== Hero Section ===== */
-.hero {
-  position: relative;
-  height: 100vh;
-  background-image: url('images/bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-top: 60px;
-}
-
-.overlay {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 60px;
-  border-radius: 20px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-}
-
-.hero span {
-  color: #00bcd4;
-}
-
-.hero p {
-  margin: 15px 0 25px;
-  font-size: 1.2rem;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 25px;
-  background-color: #00bcd4;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background-color: #008ba3;
-}
-
-/* ===== Sections ===== */
-.section {
-  padding: 100px 10%;
-  text-align: center;
-  background: #111;
-  margin-bottom: 20px;
-  border-radius: 20px;
-}
-
-.section h2 {
-  margin-bottom: 20px;
-  color: #00bcd4;
-  font-size: 1.8rem;
-}
-
-/* ===== Projects ===== */
-.projects {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+/* Replace the existing .project-card and .project-card:hover styles */
 
 .project-card {
   background: #1b1b1b;
   border-radius: 10px;
   padding: 20px;
   width: 280px;
-  box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
-  transition: transform 0.3s;
+  /* Softer, more spread out shadow */
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.2); 
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 1px solid transparent; /* Base state */
 }
 
 .project-card:hover {
   transform: translateY(-5px);
+  /* Stronger shadow and a subtle cyan border on hover */
+  border: 1px solid #00bcd4; 
+  box-shadow: 0 8px 25px rgba(0, 188, 212, 0.5); 
 }
+/* Enhance your existing .navbar block */
 
-/* ===== Contact ===== */
-.contact a {
-  color: #00bcd4;
-  text-decoration: none;
-}
-
-.contact a:hover {
-  text-decoration: underline;
-}
-
-/* ===== Footer ===== */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #000;
-  font-size: 0.9rem;
-  color: #aaa;
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* Slightly more transparent for a 'glass' effect */
+  background: rgba(0, 0, 0, 0.8); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  z-index: 1000;
+  backdrop-filter: blur(8px); /* Slightly less aggressive blur */
+  /* Add a subtle bottom border/shadow for visual separation */
+  border-bottom: 1px solid rgba(0, 188, 212, 0.1); 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
 }
