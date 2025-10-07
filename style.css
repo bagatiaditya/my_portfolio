@@ -1,238 +1,133 @@
-/* --- Global Styles & Reset --- */
-:root {
-    --primary-color: #007bff; /* A standard engineering blue */
-    --secondary-color: #333;
-    --background-color: #f4f7f6;
-    --card-color: #ffffff;
-    --font-family: 'Arial', sans-serif;
-}
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: var(--font-family);
-    line-height: 1.6;
-    color: var(--secondary-color);
-    background-color: var(--background-color);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-h1, h2, h3 {
-    color: var(--secondary-color);
-    margin-bottom: 10px;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3; /* Darker primary color on hover */
-}
-
-/* --- Header & Navigation --- */
-header {
-    background: var(--card-color);
-    padding: 15px 0;
-    border-bottom: 3px solid var(--primary-color);
-    position: sticky; 
-    top: 0;
-    z-index: 100;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    font-size: 1.8em;
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-/* Call-to-Action Button Style for Resume */
-.cta-button {
-    background-color: var(--primary-color);
-    color: white !important;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-    background-color: #0056b3;
-}
-
-/* --- Section Styling --- */
-.section {
-    padding: 60px 0;
+.banner{
+    width: 100%;
+    height: 100vh;
     text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+@keyframes autoRun{
+    from{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }to{
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
 }
 
-.section:nth-child(even) { 
-    background: #e6e6e6; /* Alternate light gray background */
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
 }
-
-/* --- Hero Section (WITH BACKGROUND IMAGE) --- */
-.hero {
-    /* 1. BACKGROUND IMAGE SETUP */
-    /* *** NOTE: Make sure 'engineering-banner.jpg' is in the same folder! *** */
-    background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* Dark overlay for contrast */
-        url('engineering-banner.jpg'); /* The image file path */
-    
-    /* 2. IMAGE PLACEMENT AND SCALING */
-    background-position: center;   
-    background-size: cover;        
-    background-attachment: fixed;  /* Parallax effect */
-
-    /* 3. STYLING */
-    background-color: #004d99; /* Dark blue fallback if image fails */
-    color: white;             
-    padding: 100px 0;
-    text-align: center;
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-.hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); /* Text shadow for better contrast */
-}
-
-.hero p {
-    font-size: 1.2em;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-/* --- Skills Section --- */
-.skills-list {
-    list-style: none;
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
 }
-
-.skills-list li {
-    background: var(--card-color);
-    border: 1px solid var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 500;
+.banner .content h1{
+    font-family: 'ICA Rubrik';
+    font-size: 16em;
+    line-height: 1em;
+    color: #25283B;
+    position: relative;
 }
-
-/* --- Projects Section --- */
-.projects-grid .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    text-align: left;
-    margin-top: 30px;
+.banner .content h1::after{
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2;
+    color: transparent;
 }
-
-.project-card {
-    background: var(--card-color);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+.banner .content .author{
+    font-family: Poppins;
+    text-align: right;
+    max-width: 200px;
 }
-
-.project-card:hover {
-    transform: translateY(-5px); 
+.banner .content h2{
+    font-size: 3em;
 }
-
-.project-description {
-    margin-bottom: 15px;
-    font-size: 0.95em;
+.banner .content .model{
+    background-image: url(images/model.png);
+    width: 100%;
+    height: 75vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    z-index: 1;
 }
-
-.project-tags {
-    display: block;
-    font-size: 0.8em;
-    color: var(--primary-color);
-    font-style: italic;
-    margin-top: 10px;
-}
-
-/* --- Contact Section --- */
-.contact-info {
-    margin-top: 20px;
-    font-size: 1.1em;
-}
-
-.contact-info p {
-    margin: 10px 0;
-}
-
-
-/* --- Footer --- */
-footer {
-    background: var(--secondary-color);
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9em;
-}
-
-
-/* --- Media Queries for Responsiveness (Mobile View) --- */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
+@media screen and (max-width: 1023px) {
+    .banner .slider{
+        width: 160px;
+        height: 200px;
+        left: calc(50% - 80px);
+    }
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(300px);
+    }
+    .banner .content h1{
         text-align: center;
+        width: 100%;
+        text-shadow: 0 10px 20px #000;
+        font-size: 7em;
     }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
+    .banner .content .author{
+        color: #fff;
+        padding: 20px;
+        text-shadow: 0 10px 20px #000;
+        z-index: 2;
+        max-width: unset;
+        width: 100%;
+        text-align: center;
+        padding: 0 30px;
     }
-
-    nav ul li {
-        margin: 5px 0;
+}
+@media screen and (max-width: 767px) {
+    .banner .slider{
+        width: 100px;
+        height: 150px;
+        left: calc(50% - 50px);
     }
-
-    .hero {
-        padding: 60px 0;
+    .banner .slider .item{
+        transform: 
+            rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+            translateZ(180px);
     }
-
-    .projects-grid .container {
-        grid-template-columns: 1fr; 
-    }
-
-    .skills-list {
-        gap: 10px;
-        flex-direction: column; 
-    }
-    
-    .skills-list li {
-        width: 80%;
-        margin: 0 auto;
+    .banner .content h1{
+        font-size: 5em;
     }
 }
